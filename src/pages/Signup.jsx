@@ -1,7 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import API from "../api";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
@@ -10,12 +13,17 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/signup", {
+      const res = await API.post("/signup", {
         username,
         email,
         password,
       });
+
       setMessage(res.data.message);
+
+      // OPTIONAL: auto redirect after signup
+      // navigate("/login");
+
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong");
     }
@@ -61,6 +69,18 @@ function Signup() {
         </button>
 
         {message && <p className="mt-4 text-red-500">{message}</p>}
+
+        <div className="mt-4">
+          <p className="text-gray-600">
+            Already have an account?{" "}
+            <span
+              className="text-blue-600 cursor-pointer font-bold"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </span>
+          </p>
+        </div>
       </form>
     </div>
   );

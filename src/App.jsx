@@ -2,13 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-
-// Protected route component
-function ProtectedRoute({ children }) {
-  const token = localStorage.getItem("token");
-  if (!token) return <Navigate to="/login" replace />;
-  return children;
-}
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
@@ -18,6 +12,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
 
+      {/* Protected Dashboard Route */}
       <Route
         path="/dashboard"
         element={

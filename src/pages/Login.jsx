@@ -1,28 +1,21 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API from "../api";
 
 function Login() {
-  const navigate = useNavigate();  // ✅ must be inside component
+  const navigate = useNavigate();
 
-  const [email, setEmail]       = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage]   = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await API.post("/login", { email, password });
 
-      // save token
       localStorage.setItem("token", res.data.token);
 
-      setMessage("Login successful");
-
-      // redirect
       navigate("/dashboard");
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong");
@@ -61,6 +54,18 @@ function Login() {
         </button>
 
         {message && <p className="mt-4 text-red-500">{message}</p>}
+
+        <div className="mt-4">
+          <p className="text-gray-600">
+            Don’t have an account?{" "}
+            <span
+              className="text-blue-600 cursor-pointer font-bold"
+              onClick={() => navigate("/signup")}
+            >
+              Sign Up
+            </span>
+          </p>
+        </div>
       </form>
     </div>
   );

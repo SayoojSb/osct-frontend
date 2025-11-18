@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api/auth",
+  baseURL: "https://osct-backend-1.onrender.com/api/auth",
   withCredentials: false,
 });
 

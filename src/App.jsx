@@ -4,6 +4,10 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 
+import AddContribution from "./pages/AddContribution";
+import ViewContributions from "./pages/ViewContributions";
+import EditContribution from "./pages/EditContribution";
+
 function App() {
   return (
     <Routes>
@@ -21,6 +25,35 @@ function App() {
           </ProtectedRoute>
         }
       />
+      {/*  */}
+      <Route
+        path="/add"
+        element={
+          <ProtectedRoute>
+            <AddContribution />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/contributions"
+        element={
+          <ProtectedRoute>
+            <ViewContributions />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/edit/:id"
+        element={
+          <ProtectedRoute>
+            <EditContribution />
+          </ProtectedRoute>
+        }
+      />
+
+
     </Routes>
   );
 }

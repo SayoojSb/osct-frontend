@@ -53,6 +53,11 @@ function App() {
         }
       />
 
+      <Route
+        path="/auth/success"
+        element={<div>GitHub OAuth Success</div>}
+      />
+
 
     </Routes>
   );

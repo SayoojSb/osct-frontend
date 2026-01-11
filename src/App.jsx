@@ -7,6 +7,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import AddContribution from "./pages/AddContribution";
 import ViewContributions from "./pages/ViewContributions";
 import EditContribution from "./pages/EditContribution";
+// oauth github
+import AuthSuccess from "./pages/AuthSuccess";
 
 function App() {
   return (
@@ -53,10 +55,7 @@ function App() {
         }
       />
 
-      <Route
-        path="/auth/success"
-        element={<div>GitHub OAuth Success</div>}
-      />
+      <Route path="/auth/success" element={<AuthSuccess />} />
 
 
     </Routes>

@@ -53,6 +53,16 @@ function Login() {
           Login
         </button>
 
+        <div className="mt-4">
+          <button
+            type="button"
+            onClick={() => window.location.href = "https://osct-backend-1.onrender.com/api/auth/github"}
+            className="w-full p-3 bg-gray-800 text-white font-bold rounded hover:bg-gray-900 transition-colors flex items-center justify-center gap-2"
+          >
+            <span>Login with GitHub</span>
+          </button>
+        </div>
+
         {message && <p className="mt-4 text-red-500">{message}</p>}
 
         <div className="mt-4">

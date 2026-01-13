@@ -57,7 +57,6 @@ function App() {
 
       <Route path="/auth/success" element={<AuthSuccess />} />
 
-
     </Routes>
   );
 }

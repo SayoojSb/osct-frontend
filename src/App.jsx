@@ -1,8 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import LearnOverview from "./pages/LearnOverview";
+import LearnStep from "./pages/LearnStep";
 
 import AddContribution from "./pages/AddContribution";
 import ViewContributions from "./pages/ViewContributions";
@@ -13,7 +16,14 @@ import AuthSuccess from "./pages/AuthSuccess";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
+      {/* Public landing page */}
+      <Route path="/" element={<Landing />} />
+      
+      {/* Learning overview page */}
+      <Route path="/learn" element={<LearnOverview />} />
+
+      {/* Individual step learning page */}
+      <Route path="/learn/:stepId" element={<LearnStep />} />
 
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />

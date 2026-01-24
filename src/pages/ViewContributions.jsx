@@ -16,9 +16,7 @@ function ViewContributions() {
   const [sort, setSort] = useState("latest");
   const [page, setPage] = useState(1);
 
-  // -----------------------
-  // FETCH DATA
-  // -----------------------
+
   const fetchData = async () => {
     setLoading(true);
 
@@ -43,9 +41,7 @@ function ViewContributions() {
     fetchData();
   }, [page, search, status, difficulty, sort]);
 
-  // -----------------------
-  // DELETE FUNCTION (FIXED)
-  // -----------------------
+ 
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     if (!confirm("Delete this contribution?")) return;
@@ -157,7 +153,7 @@ function ViewContributions() {
                         Delete
                       </button>
 
-                      {/* EDIT BUTTON (FIXED navigate) */}
+                      {/* Edit button : */}
                       <button
                         onClick={() => navigate(`/edit/${c._id}`)}
                         className="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-white"

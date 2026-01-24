@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-// Step data configuration
+// Step configuration : 
 const stepsData = {
   fork: {
     number: 1,
@@ -135,13 +135,13 @@ function LearnStep() {
   const { stepId } = useParams();
   const step = stepsData[stepId];
 
-  // State for interactivity
+  // states for interactivity :
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showTroubleshooting, setShowTroubleshooting] = useState(false);
   const [reflection, setReflection] = useState("");
 
-  // Redirect to learn overview if step doesn't exist
+  // Redirect to learn overview if step doesn't exist :
   if (!step) {
     return (
       <div className="min-h-screen bg-gray-50 p-6 flex items-center justify-center">
@@ -160,7 +160,7 @@ function LearnStep() {
     );
   }
 
-  // Get all steps for the sidebar checklist
+  // Getting all steps for the sidebar checklist :
   const allSteps = Object.entries(stepsData).map(([id, data]) => ({
     id,
     ...data,
@@ -172,14 +172,14 @@ function LearnStep() {
   };
 
   const handleComplete = () => {
-    // Find next step
+    // find next step :
     const currentIndex = allSteps.findIndex((s) => s.id === stepId);
     const nextStep = allSteps[currentIndex + 1];
 
     if (nextStep) {
       window.location.href = `/learn/${nextStep.id}`;
     } else {
-      // All steps complete - redirect to overview
+      // If all steps are completed - redirect to overview :
       window.location.href = "/learn";
     }
   };
@@ -187,9 +187,9 @@ function LearnStep() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
-        {/* Two column layout */}
+
         <div className="flex gap-8">
-          {/* Left sidebar - Step checklist */}
+          {/* Left sidebar for Step checklist : */}
           <div className="w-64 flex-shrink-0">
             <div className="bg-white rounded-lg border border-gray-200 p-4 sticky top-6">
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">
@@ -222,9 +222,8 @@ function LearnStep() {
             </div>
           </div>
 
-          {/* Main content area */}
           <div className="flex-1">
-            {/* Page title */}
+
             <div className="mb-8">
               <span className="text-sm text-gray-500">Step {step.number} of 6</span>
               <h1 className="text-2xl font-semibold text-gray-800 mt-1">
@@ -232,7 +231,7 @@ function LearnStep() {
               </h1>
             </div>
 
-            {/* What section */}
+            {/* what section */}
             <section className="mb-8">
               <h2 className="text-lg font-medium text-gray-800 mb-3">
                 What you are doing
@@ -240,7 +239,7 @@ function LearnStep() {
               <p className="text-gray-600 leading-relaxed">{step.what}</p>
             </section>
 
-            {/* Why section */}
+            {/* why section */}
             <section className="mb-8">
               <h2 className="text-lg font-medium text-gray-800 mb-3">
                 Why this step exists
@@ -248,7 +247,7 @@ function LearnStep() {
               <p className="text-gray-600 leading-relaxed">{step.why}</p>
             </section>
 
-            {/* How section */}
+            {/* how section */}
             <section className="mb-8">
               <h2 className="text-lg font-medium text-gray-800 mb-3">
                 How to know it worked
@@ -256,7 +255,7 @@ function LearnStep() {
               <p className="text-gray-600 leading-relaxed">{step.how}</p>
             </section>
 
-            {/* Question section */}
+            {/* question section */}
             <section className="mb-8">
               <div className="bg-white rounded-lg border border-gray-200 p-6">
                 <h2 className="text-lg font-medium text-gray-800 mb-4">

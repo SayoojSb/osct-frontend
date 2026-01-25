@@ -1,26 +1,23 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AuthSuccess() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const token = searchParams.get("token");
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
 
-    if (token) {
-      localStorage.setItem("token", token);
-      navigate("/dashboard", { replace: true });
-    } else {
+    if (!token) {
       navigate("/login", { replace: true });
+      return;
     }
-  }, [navigate, searchParams]);
 
-  return (
-    <div className="h-screen flex items-center justify-center">
-      <p className="text-lg font-medium">Logging you in with GitHub...</p>
-    </div>
-  );
+    localStorage.setItem("token", token);
+    navigate("/dashboard", { replace: true });
+  }, [navigate]);
+
+  return null;
 }
 
 export default AuthSuccess;

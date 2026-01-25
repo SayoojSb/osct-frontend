@@ -9,6 +9,10 @@ function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  // preserving frontend origin across github oauth:
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const frontendOrigin = window.location.origin;
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -56,7 +60,7 @@ function Login() {
         <div className="mt-4">
           <button
             type="button"
-            onClick={() => window.location.href = "https://osct-backend-1.onrender.com/api/auth/github"}
+            onClick={() => window.location.href = `${backendUrl}/api/auth/github?redirect_uri=${frontendOrigin}`}
             className="w-full p-3 bg-gray-800 text-white font-bold rounded hover:bg-gray-900 transition-colors flex items-center justify-center gap-2"
           >
             <span>Login with GitHub</span>

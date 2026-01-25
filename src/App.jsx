@@ -6,6 +6,11 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import LearnOverview from "./pages/LearnOverview";
 import LearnStep from "./pages/LearnStep";
+import Navigator from "./pages/Navigator";
+import OrgRepos from "./pages/OrgRepos";
+import RepoIssues from "./pages/RepoIssues";
+import Execute from "./pages/Execute";
+import Success from "./pages/Success";
 
 import AddContribution from "./pages/AddContribution";
 import ViewContributions from "./pages/ViewContributions";
@@ -16,19 +21,14 @@ import AuthSuccess from "./pages/AuthSuccess";
 function App() {
   return (
     <Routes>
-      {/* Public landing page */}
+      {/* PUBLIC ROUTES */}
       <Route path="/" element={<Landing />} />
-      
-      {/* Learning overview page */}
-      <Route path="/learn" element={<LearnOverview />} />
-
-      {/* Individual step learning page */}
-      <Route path="/learn/:stepId" element={<LearnStep />} />
-
-      <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/auth/success" element={<AuthSuccess />} />
 
-      {/* Protected Dashboard Route */}
+      {/* PROTECTED ROUTES */}
+      {/* Dashboard - main hub after login */}
       <Route
         path="/dashboard"
         element={
@@ -37,7 +37,76 @@ function App() {
           </ProtectedRoute>
         }
       />
-      {/*  */}
+
+      {/* Learning pages */}
+      <Route
+        path="/learn"
+        element={
+          <ProtectedRoute>
+            <LearnOverview />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/learn/:stepId"
+        element={
+          <ProtectedRoute>
+            <LearnStep />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Navigator page */}
+      <Route
+        path="/navigator"
+        element={
+          <ProtectedRoute>
+            <Navigator />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Organization repositories page */}
+      <Route
+        path="/org-repos"
+        element={
+          <ProtectedRoute>
+            <OrgRepos />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Repo issues page - choose beginner-friendly issue */}
+      <Route
+        path="/repo-issues"
+        element={
+          <ProtectedRoute>
+            <RepoIssues />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Execute page - support for opening PR */}
+      <Route
+        path="/execute"
+        element={
+          <ProtectedRoute>
+            <Execute />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Success page - PR submitted confirmation */}
+      <Route
+        path="/success"
+        element={
+          <ProtectedRoute>
+            <Success />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Existing CRUD routes */}
       <Route
         path="/add"
         element={
@@ -46,7 +115,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/contributions"
         element={
@@ -55,7 +123,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/edit/:id"
         element={
@@ -64,11 +131,9 @@ function App() {
           </ProtectedRoute>
         }
       />
-
-      <Route path="/auth/success" element={<AuthSuccess />} />
-
     </Routes>
   );
 }
 
 export default App;
+

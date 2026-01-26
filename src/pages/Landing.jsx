@@ -15,31 +15,11 @@ function Landing() {
         </p>
         
         <Link
-          to="/learn"
+          to="/login"
           className="inline-block px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
         >
           Start learning
         </Link>
-
-        {/* Navigator link */}
-        <div className="mt-6">
-          <Link
-            to="/navigator"
-            className="text-gray-500 hover:text-gray-700 underline"
-          >
-            Not sure where to contribute? Find a repository
-          </Link>
-        </div>
-
-        {/* Link to OrgRepos : */}
-        <div className="mt-6">
-          <Link
-            to="/org-repos"
-            className="text-gray-500 hover:text-gray-700 underline"
-          >
-            Find beginner friendly repos here
-          </Link>
-        </div>
 
       </div>
     </div>

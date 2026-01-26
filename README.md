@@ -1,3 +1,4 @@
+<!-- v0 -->
 # osct-frontend
 
 🌐 Open Source Contribution Tracker (OSCT)
@@ -255,3 +256,107 @@ Auto-fetch PRs using GitHub API
 Contribution analytics charts
 
 Streaks calendar like GitHub
+
+
+<!-- v1 -->
+🔐 Authentication Flow (OSCT)
+
+OSCT supports two authentication methods:
+
+Email & Password (JWT)
+
+GitHub OAuth (JWT)
+
+Both flows ultimately result in a JWT stored on the client, enabling access to protected routes.
+
+🟢 1️⃣ Email / Password Login Flow
+User
+ ↓
+Login Page (/login)
+ ↓  (POST /api/auth/login)
+Backend (JWT issued)
+ ↓
+Token stored in localStorage
+ ↓
+Redirect to /dashboard
+ ↓
+Access protected routes
+
+
+Key points:
+
+JWT is returned directly from backend
+
+No external redirects
+
+Fast, local authentication
+
+🔵 2️⃣ GitHub OAuth Login Flow (Environment-Aware)
+User
+ ↓
+Login Page (/login)
+ ↓  (redirect)
+Backend → /api/auth/github
+ ↓
+GitHub Authorization Page
+ ↓
+GitHub redirects back
+ ↓
+Backend → /api/auth/github/callback
+ ↓
+JWT generated
+ ↓
+Redirect to frontend (/auth/success?token=...)
+ ↓
+Token stored in localStorage
+ ↓
+Redirect to /dashboard
+
+
+Important design decisions:
+
+Frontend passes its origin (redirect_uri) to backend
+
+Backend preserves origin using a signed cookie
+
+Same backend works for:
+
+Local development
+
+Production (Netlify)
+
+/auth/success is a transition route (not user-visible)
+
+🔒 Protected Route Logic
+Route accessed
+ ↓
+ProtectedRoute checks token
+ ↓
+Token exists? ── Yes → Render page
+        │
+        └── No → Redirect to /login
+
+
+Protected routes include:
+
+/dashboard
+
+/learn
+
+/repo-issues
+
+/org-repos
+
+Contribution CRUD pages
+
+🧠 Why This Design?
+
+Stateless authentication (JWT)
+
+Clean separation of frontend & backend
+
+Secure OAuth (CSRF-protected via state)
+
+Environment-safe redirects
+
+Production-grade auth behavior

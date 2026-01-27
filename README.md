@@ -54,6 +54,7 @@ Pagination	✅
 Search (title + repo)	✅
 Filtering (status, difficulty)	✅
 Sorting (latest, oldest, title A-Z, Z-A)	✅
+Organization Repositories (GitHub API)	✅
 Ownership Security	Only creator can edit/delete
 🧰 Tech Stack
 Frontend
@@ -136,7 +137,30 @@ Filters	✅
 Sorting	✅
 Hosted Frontend	✅
 Hosted Backend	✅
+Hosted Backend	✅
 README with proposal	✅
+
+🧠 Frontend Features Explained
+
+Ever wondered how we help you find the *safest* repositories to contribute to?
+
+🛡️ Safety Score (The Beginner-Friendly Metric)
+Since the GitHub API doesn't tell us "how nice is this community?", we calculate a **Safety Score (0-100)** on the fly!
+
+*   **Base Score:** Everyone starts at **50**.
+*   **Popuarity:** +1 point for every 100 stars (Max +30).
+*   **Liveness:** +20 if updated in last 30 days, +10 if in last 90 days.
+*   **Documentation:** +5 if it has a good description.
+*   **Issues:** -1 for every 100 open issues (Max -20).
+
+🟢 **90+**: Super Safe & Active
+🔵 **75+**: Good for Beginners
+🟡 **60+**: Moderate
+🔴 **<60**: Approach with Caution
+
+📅 Recently Updated (UpdatedAt)
+We show "Updated X days ago" based on the `updated_at` field. This tracks **any** activity (commits, issue comments, PRs), ensuring the project isn't a "ghost town."
+
 📝 Project Proposal (FINAL)
 Project Title:
 

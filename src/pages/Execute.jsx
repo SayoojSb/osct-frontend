@@ -11,31 +11,44 @@ function Execute() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-lg mx-auto">
+    <div className="repositories-page">
+
+      <div className="repositories-container" style={{ maxWidth: '600px' }}>
         {/* Reassurance message */}
-        <div className="mb-8 text-center">
-          <h1 className="text-2xl font-semibold text-gray-800 mb-3">
+        <div style={{ marginBottom: 'var(--spacing-2xl)', textAlign: 'center' }}>
+          <h1 className="repositories-title" style={{ marginBottom: 'var(--spacing-md)' }}>
             You're almost there
           </h1>
-          <p className="text-gray-600">
+          <p className="repositories-subtitle">
             Opening a PR can feel intimidating, but you've done the hard work.
             This is just the final step.
           </p>
         </div>
 
         {/* Checklist card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-medium text-gray-700 mb-4">
+        <div className="card" style={{ marginBottom: 'var(--spacing-lg)' }}>
+          <h2 style={{ fontSize: 'var(--font-size-headline-lg)', fontWeight: 'var(--font-weight-headline)', marginBottom: 'var(--spacing-lg)' }}>
             Before you submit
           </h2>
-          <ul className="space-y-3">
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
             {steps.map((step, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-5 h-5 bg-green-100 text-green-700 rounded-full flex items-center justify-center text-sm">
+              <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--spacing-md)' }}>
+                <span style={{
+                  flexShrink: 0,
+                  width: '32px',
+                  height: '32px',
+                  background: 'var(--color-success)',
+                  color: 'var(--color-on-primary)',
+                  borderRadius: 'var(--radius-full)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '18px',
+                  fontWeight: 'bold'
+                }}>
                   ✓
                 </span>
-                <span className="text-gray-600">{step.text}</span>
+                <span style={{ color: 'var(--color-on-surface-variant)', fontSize: 'var(--font-size-body-lg)' }}>{step.text}</span>
               </li>
             ))}
           </ul>
@@ -44,7 +57,12 @@ function Execute() {
         {/* GitHub button */}
         <button
           onClick={handleOpenGitHub}
-          className="w-full px-6 py-3 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
+          className="btn-primary"
+          style={{
+            width: '100%',
+            padding: 'var(--spacing-lg)',
+            fontSize: 'var(--font-size-headline-sm)'
+          }}
         >
           Open on GitHub
         </button>
@@ -54,4 +72,3 @@ function Execute() {
 }
 
 export default Execute;
-

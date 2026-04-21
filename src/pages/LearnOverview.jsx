@@ -11,52 +11,62 @@ function LearnOverview() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-2xl mx-auto">
+    <div className="learning-page">
+      <div className="learning-container">
+        <div className="learning-header">
+          <h1 className="learning-title">Pull Request Journey</h1>
+          <p className="learning-subtitle">You'll complete this in 6 steps</p>
+        </div>
 
-        <p className="text-gray-600 mb-8">
-          You'll complete this in 6 steps
-        </p>
-
-        <h1 className="text-2xl font-semibold text-gray-800 mb-8">
-          Pull Request Journey
-        </h1>
-
-        {/* Steps : */}
-        <div className="space-y-4 mb-10">
+        {/* Steps */}
+        <div className="learning-overview-grid" style={{ gridTemplateColumns: '1fr', gap: 'var(--spacing-md)' }}>
           {steps.map((step) => (
             <div
               key={step.number}
-              className="flex items-center gap-4 p-4 bg-white rounded-lg border border-gray-200"
+              className="learning-list-item"
+              style={{ borderLeft: '4px solid var(--color-primary)', display: 'flex', alignItems: 'center', gap: 'var(--spacing-lg)' }}
             >
-              <span className="flex items-center justify-center w-8 h-8 bg-blue-600 text-white text-sm font-medium rounded-full">
+              <span style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '40px',
+                height: '40px',
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-container))',
+                color: 'var(--color-on-primary)',
+                fontSize: 'var(--font-size-headline-sm)',
+                fontWeight: 'var(--font-weight-headline)',
+                borderRadius: 'var(--radius-full)',
+                flexShrink: 0
+              }}>
                 {step.number}
               </span>
-              <span className="text-gray-700">{step.title}</span>
+              <span className="learning-list-item-title" style={{ margin: 0 }}>{step.title}</span>
             </div>
           ))}
         </div>
 
-        {/* button to navigate to next step */}
-        <Link
-          to="/learn/fork"
-          className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Start step 1
-        </Link>
+        {/* Actions */}
+        <div className="learning-actions" style={{ marginTop: 'var(--spacing-3xl)' }}>
+          <Link
+            to="/learn/fork"
+            className="btn-primary"
+            style={{ padding: '12px 16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            Start Step 1
+          </Link>
 
-        {/* Button to go back to dashboard */}
-        <Link
-          to="/"
-          className="inline-block ml-4 px-6 py-3 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition-colors"
-        >
-          Go back
-        </Link>
-
+          <Link
+            to="/dashboard"
+            className="btn-secondary"
+            style={{ padding: '12px 16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            Go Back
+          </Link>
+        </div>
       </div>
     </div>
   );
 }
 
 export default LearnOverview;
-

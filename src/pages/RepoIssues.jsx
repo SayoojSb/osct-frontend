@@ -51,36 +51,45 @@ const mockIssues = [
 
 function IssueCard({ issue, onSelect }) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-5 hover:border-gray-300 transition-colors">
+    <div className="card" style={{ cursor: 'pointer' }}>
       {/* Issue header */}
-      <div className="mb-3">
-        <h3 className="text-lg font-semibold text-gray-800">{issue.title}</h3>
-        <p className="text-sm text-gray-500">{issue.repoName}</p>
+      <div style={{ marginBottom: 'var(--spacing-md)' }}>
+        <h3 className="repository-name" style={{ margin: 0, marginBottom: 'var(--spacing-xs)' }}>{issue.title}</h3>
+        <p style={{ fontSize: 'var(--font-size-label-md)', color: 'var(--color-on-surface-variant)', margin: 0 }}>
+          {issue.repoName}
+        </p>
       </div>
 
       {/* Explanation */}
-      <p className="text-gray-600 text-sm mb-3">
-        <span className="font-medium text-gray-700">What it is: </span>
+      <p className="repository-description" style={{ marginBottom: 'var(--spacing-md)' }}>
+        <span style={{ fontWeight: 'var(--font-weight-headline)' }}>What it is: </span>
         {issue.explanation}
       </p>
 
       {/* Why beginner friendly */}
-      <div className="bg-green-50 border border-green-200 rounded-md p-3 mb-4">
-        <p className="text-green-800 text-sm">
-          <span className="font-medium">Why it's good for beginners: </span>
+      <div style={{
+        background: 'var(--color-surface-container-low)',
+        borderLeft: '4px solid var(--color-success)',
+        borderRadius: 'var(--radius-md)',
+        padding: 'var(--spacing-md)',
+        marginBottom: 'var(--spacing-lg)'
+      }}>
+        <p style={{ fontSize: 'var(--font-size-body-md)', color: 'var(--color-on-surface)', margin: 0 }}>
+          <span style={{ fontWeight: 'var(--font-weight-headline)' }}>Why it's good for beginners: </span>
           {issue.whyBeginnerFriendly}
         </p>
       </div>
 
       {/* Labels */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
+      <div className="repository-tags" style={{ marginBottom: 'var(--spacing-lg)' }}>
+        <span className="chip" style={{ fontSize: 'var(--font-size-label-sm)' }}>
           {issue.difficulty}
         </span>
         {issue.labels.map((label) => (
           <span
             key={label}
-            className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded"
+            className="chip"
+            style={{ fontSize: 'var(--font-size-label-sm)' }}
           >
             {label}
           </span>
@@ -88,16 +97,18 @@ function IssueCard({ issue, onSelect }) {
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-3">
+      <div className="repository-actions">
         <button
           onClick={() => onSelect(issue)}
-          className="flex-1 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="btn-primary"
+          style={{ flex: 1 }}
         >
           Start with this issue
         </button>
         <button
           onClick={() => window.open(`https://github.com/${issue.repoName}/issues/${issue.id}`, "_blank")}
-          className="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+          className="btn-secondary"
+          style={{ flex: 1 }}
         >
           View on GitHub
         </button>
@@ -117,26 +128,25 @@ function RepoIssues() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-3xl mx-auto">
+    <div className="repositories-page">
+
+      <div className="repositories-container">
         {/* Page header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-            Choose Your First Issue
-          </h1>
-          <p className="text-gray-600">
+        <div className="repositories-header">
+          <h1 className="repositories-title">Choose Your First Issue</h1>
+          <p className="repositories-subtitle">
             Pick an issue that matches your current skills. Each one below is labeled as beginner-friendly with clear explanations.
           </p>
         </div>
 
         {/* Issues count */}
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-body-md" style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-on-surface-variant)' }}>
           Showing {mockIssues.length} beginner-friendly issue
           {mockIssues.length !== 1 ? "s" : ""}
         </p>
 
         {/* Issues list */}
-        <div className="space-y-4">
+        <div className="repositories-grid" style={{ gridTemplateColumns: '1fr', gap: 'var(--spacing-lg)' }}>
           {mockIssues.map((issue) => (
             <IssueCard
               key={issue.id}
@@ -147,10 +157,10 @@ function RepoIssues() {
         </div>
 
         {/* Back link */}
-        <div className="mt-8">
+        <div style={{ marginTop: 'var(--spacing-2xl)' }}>
           <button
             onClick={() => navigate(-1)}
-            className="text-gray-500 hover:text-gray-700 underline"
+            className="btn-tertiary"
           >
             ← Go back
           </button>
@@ -161,4 +171,3 @@ function RepoIssues() {
 }
 
 export default RepoIssues;
-

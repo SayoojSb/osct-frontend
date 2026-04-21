@@ -27,60 +27,70 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <form
-        onSubmit={handleLogin}
-        className="w-full max-w-md bg-white p-8 rounded-lg shadow-md text-center"
-      >
-        <h2 className="text-2xl font-bold mb-6">Login</h2>
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="auth-card">
+          <h2 className="auth-title">Login</h2>
+          <p className="auth-subtitle">Welcome back to OSCT</p>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-100 text-gray-800 placeholder-gray-500"
-        />
+          <form onSubmit={handleLogin} className="auth-form">
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-input"
+              />
+            </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-100 text-gray-800 placeholder-gray-500"
-        />
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-input"
+              />
+            </div>
 
-        <button
-          type="submit"
-          className="w-full p-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition-colors"
-        >
-          Login
-        </button>
+            {message && <p className="form-error">{message}</p>}
 
-        <div className="mt-4">
-          <button
-            type="button"
-            onClick={() => window.location.href = `${backendUrl}/api/auth/github?redirect_uri=${frontendOrigin}`}
-            className="w-full p-3 bg-gray-800 text-white font-bold rounded hover:bg-gray-900 transition-colors flex items-center justify-center gap-2"
-          >
-            <span>Login with GitHub</span>
-          </button>
-        </div>
+            <div className="auth-actions">
+              <button
+                type="submit"
+                className="btn-primary auth-primary-action"
+              >
+                Login
+              </button>
 
-        {message && <p className="mt-4 text-red-500">{message}</p>}
+              <div className="auth-divider">
+                <span className="auth-divider-text">or</span>
+              </div>
 
-        <div className="mt-4">
-          <p className="text-gray-600">
-            Don’t have an account?{" "}
-            <span
-              className="text-blue-600 cursor-pointer font-bold"
+              <button
+                type="button"
+                onClick={() => window.location.href = `${backendUrl}/api/auth/github?redirect_uri=${frontendOrigin}`}
+                className="btn-secondary auth-secondary-action"
+              >
+                Login with GitHub
+              </button>
+            </div>
+          </form>
+
+          <div className="auth-footer">
+            Don't have an account?{" "}
+            <button
               onClick={() => navigate("/signup")}
+              className="auth-footer-link"
             >
               Sign Up
-            </span>
-          </p>
+            </button>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

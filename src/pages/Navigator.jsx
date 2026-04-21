@@ -29,14 +29,13 @@ function Navigator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-xl mx-auto">
+    <div className="repositories-page">
 
-        <div className="mb-8">
-          <h1 className="text-2xl font-semibold text-gray-800 mb-3">
-            Find Your First Repository
-          </h1>
-          <p className="text-gray-600">
+      <div className="repositories-container" style={{ maxWidth: '700px' }}>
+
+        <div className="repositories-header">
+          <h1 className="repositories-title">Find Your First Repository</h1>
+          <p className="repositories-subtitle">
             Not sure where to start? Tell us a bit about yourself, and we'll
             suggest beginner-friendly repositories that match your skills.
           </p>
@@ -45,13 +44,13 @@ function Navigator() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-lg border border-gray-200 p-6"
+          className="card"
         >
           {/* Language using dropdown */}
-          <div className="mb-6">
+          <div className="form-group" style={{ marginBottom: 'var(--spacing-lg)' }}>
             <label
               htmlFor="language"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="form-label"
             >
               What language do you prefer?
             </label>
@@ -59,7 +58,7 @@ function Navigator() {
               id="language"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-gray-700"
+              className="form-select"
             >
               {languages.map((lang) => (
                 <option key={lang.value} value={lang.value}>
@@ -70,10 +69,10 @@ function Navigator() {
           </div>
 
           {/* Experience using dropdown */}
-          <div className="mb-6">
+          <div className="form-group" style={{ marginBottom: 'var(--spacing-lg)' }}>
             <label
               htmlFor="experience"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="form-label"
             >
               How many pull requests have you made?
             </label>
@@ -81,7 +80,7 @@ function Navigator() {
               id="experience"
               value={experience}
               onChange={(e) => setExperience(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-gray-700"
+              className="form-select"
             >
               {experienceLevels.map((level) => (
                 <option key={level.value} value={level.value}>
@@ -95,7 +94,13 @@ function Navigator() {
           <button
             type="submit"
             disabled={!language || !experience}
-            className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="btn-primary"
+            style={{
+              width: '100%',
+              padding: 'var(--spacing-lg)',
+              opacity: (!language || !experience) ? 0.5 : 1,
+              cursor: (!language || !experience) ? 'not-allowed' : 'pointer'
+            }}
           >
             Find safe repositories
           </button>
@@ -103,12 +108,12 @@ function Navigator() {
 
         {/* Mock results using placeholder */}
         {language && experience && (
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-blue-800 text-sm">
+          <div className="card" style={{ marginTop: 'var(--spacing-lg)', background: 'var(--color-surface-container-low)' }}>
+            <p style={{ fontSize: 'var(--font-size-body-md)', color: 'var(--color-on-surface)', margin: 0, marginBottom: 'var(--spacing-sm)' }}>
               Repository suggestions will appear here once the backend is
               connected.
             </p>
-            <p className="text-blue-600 text-xs mt-1">
+            <p style={{ fontSize: 'var(--font-size-label-md)', color: 'var(--color-on-surface-variant)', margin: 0 }}>
               Current selection: {language} • {experience}
             </p>
           </div>
@@ -119,4 +124,3 @@ function Navigator() {
 }
 
 export default Navigator;
-

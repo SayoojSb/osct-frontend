@@ -1,0 +1,224 @@
+/* Responsive Layout & Breakpoints - Nocturnal Atelier Design System */
+
+/* ===== MOBILE: 320px - 767px ===== */
+@media (max-width: 767px) {
+  :root {
+    --font-size-display-lg: 32px;
+    --font-size-display-md: 28px;
+    --font-size-display-sm: 24px;
+    --font-size-headline-lg: 20px;
+    --font-size-headline-md: 18px;
+    --font-size-headline-sm: 16px;
+    --font-size-body-lg: 14px;
+    --font-size-body-md: 13px;
+    --font-size-body-sm: 12px;
+    --spacing-3xl: 32px;
+    --spacing-4xl: 48px;
+  }
+
+  body {
+    font-size: var(--font-size-body-md);
+  }
+
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+/* ===== TABLET: 768px - 1023px ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --font-size-display-lg: 40px;
+    --font-size-display-md: 36px;
+    --font-size-display-sm: 28px;
+    --font-size-headline-lg: 22px;
+    --font-size-headline-md: 20px;
+    --font-size-headline-sm: 18px;
+  }
+
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+/* ===== DESKTOP: 1024px+ ===== */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-display-lg: 48px;
+    --font-size-display-md: 40px;
+    --font-size-display-sm: 32px;
+  }
+
+  .container {
+    padding: 0 var(--spacing-2xl);
+  }
+}
+
+/* ===== GRID LAYOUT ===== */
+.grid {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive Grid */
+@media (max-width: 767px) {
+  .grid-responsive {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== CONTAINER QUERIES ===== */
+.container-max-width {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container-full {
+  width: 100%;
+}
+
+/* ===== RESPONSIVE SPACING ===== */
+@media (max-width: 767px) {
+  .p-responsive {
+    padding: var(--spacing-lg);
+  }
+
+  .m-responsive {
+    margin: var(--spacing-lg);
+  }
+
+  .gap-responsive {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .p-responsive {
+    padding: var(--spacing-xl);
+  }
+
+  .m-responsive {
+    margin: var(--spacing-xl);
+  }
+
+  .gap-responsive {
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .p-responsive {
+    padding: var(--spacing-2xl);
+  }
+
+  .m-responsive {
+    margin: var(--spacing-2xl);
+  }
+
+  .gap-responsive {
+    gap: var(--spacing-xl);
+  }
+}
+
+/* ===== RESPONSIVE DISPLAY ===== */
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hidden-tablet {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hidden-desktop {
+    display: none;
+  }
+}
+
+/* ===== RESPONSIVE TYPOGRAPHY ===== */
+@media (max-width: 767px) {
+  .text-responsive-lg {
+    font-size: var(--font-size-body-lg);
+  }
+
+  .text-responsive-md {
+    font-size: var(--font-size-body-md);
+  }
+
+  .text-responsive-sm {
+    font-size: var(--font-size-body-sm);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .text-responsive-lg {
+    font-size: var(--font-size-headline-md);
+  }
+
+  .text-responsive-md {
+    font-size: var(--font-size-body-lg);
+  }
+
+  .text-responsive-sm {
+    font-size: var(--font-size-body-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-lg {
+    font-size: var(--font-size-headline-lg);
+  }
+
+  .text-responsive-md {
+    font-size: var(--font-size-body-lg);
+  }
+
+  .text-responsive-sm {
+    font-size: var(--font-size-body-md);
+  }
+}
+
+/* ===== FLEX RESPONSIVE ===== */
+@media (max-width: 767px) {
+  .flex-responsive {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-responsive {
+    flex-direction: row;
+  }
+}

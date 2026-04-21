@@ -1,0 +1,276 @@
+/* Repository Exploration Pages Styles - Nocturnal Atelier Design System */
+
+.repositories-page {
+  background-color: var(--color-surface-base);
+  min-height: 100vh;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+@media (max-width: 767px) {
+  .repositories-page {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .repositories-page {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+  }
+}
+
+.repositories-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.repositories-title {
+  font-size: var(--font-size-display-lg);
+  font-weight: var(--font-weight-display);
+  color: var(--color-on-surface);
+  margin-bottom: var(--spacing-md);
+}
+
+.repositories-subtitle {
+  font-size: var(--font-size-body-lg);
+  color: var(--color-on-surface-variant);
+}
+
+.repositories-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.repositories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+@media (max-width: 767px) {
+  .repositories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .repositories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.repository-card {
+  background-color: var(--color-surface-container);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(var(--glass-blur-sm));
+  background-image: linear-gradient(
+    135deg,
+    rgba(142, 213, 255, 0.05),
+    rgba(56, 189, 248, 0.02)
+  );
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.repository-card:hover {
+  backdrop-filter: blur(var(--glass-blur-md));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.repository-name {
+  font-size: var(--font-size-headline-md);
+  font-weight: var(--font-weight-headline);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.repository-description {
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-surface-variant);
+  line-height: var(--line-height-body);
+  flex-grow: 1;
+}
+
+.repository-meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  font-size: var(--font-size-label-md);
+  color: var(--color-on-surface-variant);
+}
+
+.repository-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.repository-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.repository-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.repository-actions .btn-primary {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: var(--font-size-body-lg);
+}
+
+.repositories-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.repository-list-item {
+  background-color: var(--color-surface-container);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.repository-list-item:hover {
+  background-color: var(--color-surface-container-highest);
+  box-shadow: var(--shadow-sm);
+}
+
+.repository-list-item-content {
+  flex: 1;
+}
+
+.repository-list-item-title {
+  font-size: var(--font-size-headline-sm);
+  font-weight: var(--font-weight-headline);
+  color: var(--color-on-surface);
+  margin-bottom: var(--spacing-sm);
+}
+
+.repository-list-item-description {
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-surface-variant);
+  margin-bottom: var(--spacing-sm);
+}
+
+.repository-list-item-meta {
+  display: flex;
+  gap: var(--spacing-lg);
+  font-size: var(--font-size-label-md);
+  color: var(--color-on-surface-variant);
+  flex-wrap: wrap;
+}
+
+.repository-list-item-action {
+  flex-shrink: 0;
+}
+
+.repositories-filters {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 6px 12px;
+  background-color: var(--color-surface-container-highest);
+  color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-label);
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.filter-chip.active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.repositories-search {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-family);
+  color: var(--color-on-surface);
+  background-color: var(--color-surface-container-low);
+  border: 1px solid var(--color-surface-container);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(189, 200, 209, 0.6);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-container);
+  box-shadow: 0 0 0 2px rgba(142, 213, 255, 0.1);
+}
+
+@media (max-width: 767px) {
+  .repositories-title {
+    font-size: var(--font-size-display-sm);
+  }
+
+  .repositories-subtitle {
+    font-size: var(--font-size-body-md);
+  }
+
+  .repository-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .repository-list-item-action {
+    width: 100%;
+  }
+}
+
+.repositories-empty {
+  text-align: center;
+  padding: var(--spacing-4xl) var(--spacing-lg);
+}
+
+.repositories-empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-on-surface-variant);
+}
+
+.repositories-empty-title {
+  font-size: var(--font-size-headline-lg);
+  font-weight: var(--font-weight-headline);
+  color: var(--color-on-surface);
+  margin-bottom: var(--spacing-md);
+}
+
+.repositories-empty-description {
+  font-size: var(--font-size-body-lg);
+  color: var(--color-on-surface-variant);
+}

@@ -1,0 +1,219 @@
+/* Global Styles & Resets - Nocturnal Atelier Design System */
+
+/* Import Manrope font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+/* Import design system */
+@import './design-system/index.css';
+
+/* Import component styles */
+@import './components/sidebar.css';
+@import './components/header.css';
+@import './components/dashboard-layout.css';
+
+/* Import page-specific styles */
+@import './pages/dashboard.css';
+@import './pages/auth.css';
+@import './pages/contributions.css';
+@import './pages/learning.css';
+@import './pages/repositories.css';
+
+/* ===== CSS RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body-lg);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-body);
+  color: var(--color-on-surface);
+  background-color: var(--color-surface-base);
+  transition: background-color 0.3s ease;
+}
+
+/* ===== TYPOGRAPHY RESETS ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  color: var(--color-on-surface);
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-container);
+}
+
+/* ===== LIST RESETS ===== */
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== FORM RESETS ===== */
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-family);
+  color: var(--color-on-surface);
+  background-color: var(--color-surface-container-low);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(189, 200, 209, 0.6);
+}
+
+/* ===== IMAGE RESETS ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== TABLE RESETS ===== */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-container-low);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-container-highest);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* ===== SELECTION STYLING ===== */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* ===== FOCUS OUTLINE ===== */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ===== CONTAINER SETUP ===== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-2xl);
+  }
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+main {
+  display: block;
+  min-height: calc(100vh - 60px);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-tertiary {
+    display: none;
+  }
+}

@@ -66,75 +66,114 @@ function EditContribution() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Edit Contribution
-        </h2>
+    <div className="contributions-page">
 
-        {/* TITLE, REPONAME, PRLINK */}
-        {["title", "repoName", "prLink"].map((key) => (
-          <input
-            key={key}
-            name={key}
-            placeholder={key}
-            value={form[key]}
-            onChange={handleChange}
-            className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-50"
-          />
-        ))}
+      <div className="contributions-container">
+        <div className="contributions-header">
+          <h1 className="contributions-title">Edit Contribution</h1>
+          <p className="contributions-subtitle">Update your contribution details</p>
+        </div>
 
-        {/* DESCRIPTION AS TEXTAREA */}
-        <textarea
-          name="description"
-          placeholder="description"
-          value={form.description}
-          onChange={handleChange}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-50 h-28"
-        ></textarea>
+        <div className="contributions-card">
+          <form onSubmit={handleSubmit} className="contributions-form">
+            <div className="form-section">
+              <div className="form-group">
+                <label className="form-label">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Contribution title"
+                  value={form.title}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </div>
 
-        {/* STATUS */}
-        <select
-          name="status"
-          value={form.status}
-          onChange={handleChange}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-50"
-        >
-          <option value="">Status</option>
-          <option value="open">Open</option>
-          <option value="merged">Merged</option>
-          <option value="closed">Closed</option>
-        </select>
+              <div className="form-group">
+                <label className="form-label">Repository Name</label>
+                <input
+                  type="text"
+                  name="repoName"
+                  placeholder="Repository name"
+                  value={form.repoName}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </div>
 
-        {/* DIFFICULTY */}
-        <select
-          name="difficulty"
-          value={form.difficulty}
-          onChange={handleChange}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-50"
-        >
-          <option value="">Difficulty</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+              <div className="form-group">
+                <label className="form-label">Description</label>
+                <textarea
+                  name="description"
+                  placeholder="Describe your contribution"
+                  value={form.description}
+                  onChange={handleChange}
+                  className="form-textarea"
+                />
+              </div>
 
-        <button
-          type="submit"
-          className="w-full p-3 bg-blue-600 hover:bg-blue-700 text-white rounded"
-        >
-          Save Changes
-        </button>
+              <div className="form-group">
+                <label className="form-label">PR Link</label>
+                <input
+                  type="url"
+                  name="prLink"
+                  placeholder="Link to your pull request"
+                  value={form.prLink}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </div>
 
-        {message && (
-          <p className="mt-4 text-center text-green-600 font-semibold">
-            {message}
-          </p>
-        )}
-      </form>
+              <div className="form-grid">
+                <div className="form-group">
+                  <label className="form-label">Status</label>
+                  <select
+                    name="status"
+                    value={form.status}
+                    onChange={handleChange}
+                    className="form-select"
+                  >
+                    <option value="">Select status</option>
+                    <option value="open">Open</option>
+                    <option value="merged">Merged</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Difficulty</label>
+                  <select
+                    name="difficulty"
+                    value={form.difficulty}
+                    onChange={handleChange}
+                    className="form-select"
+                  >
+                    <option value="">Select difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {message && <p style={{ color: message.includes('successfully') ? 'var(--color-success)' : 'var(--color-error)', textAlign: 'center', marginBottom: 'var(--spacing-lg)' }}>{message}</p>}
+
+            <div className="contributions-actions">
+              <button type="submit" className="btn-primary">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                onClick={() => navigate("/contributions")}
+                className="btn-secondary"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

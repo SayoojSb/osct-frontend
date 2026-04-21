@@ -30,58 +30,68 @@ function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <form
-        onSubmit={handleSignup}
-        className="w-full max-w-md bg-white p-8 rounded-lg shadow-md text-center"
-      >
-        <h2 className="text-2xl font-bold mb-6">Create Account</h2>
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="auth-card">
+          <h2 className="auth-title">Create Account</h2>
+          <p className="auth-subtitle">Join OSCT and start contributing</p>
 
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-100 text-gray-800 placeholder-gray-500"
-        />
+          <form onSubmit={handleSignup} className="auth-form">
+            <div className="form-group">
+              <label className="form-label">Username</label>
+              <input
+                type="text"
+                placeholder="Choose a username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="form-input"
+              />
+            </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-100 text-gray-800 placeholder-gray-500"
-        />
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-input"
+              />
+            </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 mb-4 rounded border border-gray-300 bg-gray-100 text-gray-800 placeholder-gray-500"
-        />
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                placeholder="Create a password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-input"
+              />
+            </div>
 
-        <button
-          type="submit"
-          className="w-full p-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition-colors"
-        >
-          Sign Up
-        </button>
+            {message && <p className="form-error">{message}</p>}
 
-        {message && <p className="mt-4 text-red-500">{message}</p>}
+            <button
+              type="submit"
+              className="btn-primary auth-primary-action"
+              style={{ marginTop: 'var(--spacing-lg)' }}
+            >
+              Sign Up
+            </button>
+          </form>
 
-        <div className="mt-4">
-          <p className="text-gray-600">
+          <div className="auth-footer">
             Already have an account?{" "}
-            <span
-              className="text-blue-600 cursor-pointer font-bold"
+            <button
               onClick={() => navigate("/login")}
+              className="auth-footer-link"
             >
               Login
-            </span>
-          </p>
+            </button>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

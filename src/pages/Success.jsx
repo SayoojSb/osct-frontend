@@ -11,51 +11,51 @@ function Success() {
   const prStatus = "Under Review";
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-lg mx-auto">
+    <div className="repositories-page">
+
+      <div className="repositories-container" style={{ maxWidth: '600px' }}>
         {/* Success header */}
-        <div className="mb-8 text-center">
-          <div className="w-16 h-16 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
+        <div style={{ marginBottom: 'var(--spacing-2xl)', textAlign: 'center' }}>
+          <div style={{
+            width: '80px',
+            height: '80px',
+            background: 'var(--color-success)',
+            color: 'var(--color-on-primary)',
+            borderRadius: 'var(--radius-full)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto var(--spacing-lg)',
+            fontSize: '40px'
+          }}>
+            ✓
           </div>
-          <h1 className="text-2xl font-semibold text-gray-800 mb-3">
+          <h1 className="repositories-title" style={{ marginBottom: 'var(--spacing-md)' }}>
             Your pull request is submitted!
           </h1>
-          <p className="text-gray-600">
+          <p className="repositories-subtitle">
             You did it. Your first contribution to an open source project is out
             there. Take a moment to appreciate that.
           </p>
         </div>
 
         {/* PR details card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <h2 className="text-sm font-medium text-gray-500 mb-3 uppercase tracking-wide">
+        <div className="card" style={{ marginBottom: 'var(--spacing-lg)' }}>
+          <h2 style={{ fontSize: 'var(--font-size-label-lg)', color: 'var(--color-on-surface-variant)', textTransform: 'uppercase', letterSpacing: 'var(--letter-spacing-label)', marginBottom: 'var(--spacing-md)' }}>
             Pull Request Details
           </h2>
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-600">Repository</span>
-              <span className="text-gray-800 font-medium">{repoName}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-on-surface-variant)' }}>Repository</span>
+              <span style={{ fontWeight: 'var(--font-weight-headline)' }}>{repoName}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Submitted</span>
-              <span className="text-gray-800">{prDate}</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-on-surface-variant)' }}>Submitted</span>
+              <span>{prDate}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Status</span>
-              <span className="text-amber-600 bg-amber-50 px-2 py-0.5 rounded text-sm">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--color-on-surface-variant)' }}>Status</span>
+              <span className="chip" style={{ fontSize: 'var(--font-size-label-sm)' }}>
                 {prStatus}
               </span>
             </div>
@@ -63,8 +63,8 @@ function Success() {
         </div>
 
         {/* What happens next */}
-        <div className="bg-blue-50 rounded-lg p-4 mb-6">
-          <p className="text-blue-800 text-sm">
+        <div className="card" style={{ background: 'var(--color-surface-container-low)', marginBottom: 'var(--spacing-lg)' }}>
+          <p style={{ fontSize: 'var(--font-size-body-md)', color: 'var(--color-on-surface)', margin: 0 }}>
             <strong>What happens next?</strong>
             <br />
             Maintainers will review your changes. This can take a few days. If
@@ -74,16 +74,32 @@ function Success() {
         </div>
 
         {/* Action buttons */}
-        <div className="space-y-3">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
           <Link
             to="/repo-issues"
-            className="block w-full px-6 py-3 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors text-center"
+            className="btn-primary"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 'var(--spacing-lg)',
+              textDecoration: 'none',
+              width: '100%'
+            }}
           >
             Try another beginner issue
           </Link>
           <Link
             to="/navigator"
-            className="block w-full px-6 py-3 bg-white text-gray-700 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors text-center"
+            className="btn-secondary"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 'var(--spacing-lg)',
+              textDecoration: 'none',
+              width: '100%'
+            }}
           >
             Go back to navigator
           </Link>
@@ -94,4 +110,3 @@ function Success() {
 }
 
 export default Success;
-

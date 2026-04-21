@@ -144,14 +144,14 @@ function LearnStep() {
   // Redirect to learn overview if step doesn't exist :
   if (!step) {
     return (
-      <div className="min-h-screen bg-gray-50 p-6 flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+      <div className="learning-page" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ textAlign: 'center' }}>
+          <h2 className="text-headline-lg" style={{ marginBottom: 'var(--spacing-lg)' }}>
             Step not found
           </h2>
           <Link
             to="/learn"
-            className="text-blue-600 hover:text-blue-700 underline"
+            className="btn-tertiary"
           >
             Back to overview
           </Link>
@@ -185,180 +185,225 @@ function LearnStep() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="learning-page">
 
-        <div className="flex gap-8">
-          {/* Left sidebar for Step checklist : */}
-          <div className="w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg border border-gray-200 p-4 sticky top-6">
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">
-                PR Steps
-              </h3>
-              <nav className="space-y-1">
-                {allSteps.map((s) => (
-                  <Link
-                    key={s.id}
-                    to={`/learn/${s.id}`}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
-                      s.id === stepId
-                        ? "bg-blue-50 text-blue-700 font-medium"
-                        : "text-gray-600 hover:bg-gray-50"
-                    }`}
+      <div className="learning-container" style={{ display: 'flex', gap: 'var(--spacing-xl)' }}>
+
+        {/* Left sidebar for Step checklist : */}
+        <div style={{ width: '250px', flexShrink: 0 }}>
+          <div className="card" style={{ position: 'sticky', top: 'var(--spacing-xl)' }}>
+            <h3 style={{ fontSize: 'var(--font-size-label-lg)', color: 'var(--color-on-surface-variant)', textTransform: 'uppercase', letterSpacing: 'var(--letter-spacing-label)', marginBottom: 'var(--spacing-lg)' }}>
+              PR Steps
+            </h3>
+            <nav style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)' }}>
+              {allSteps.map((s) => (
+                <Link
+                  key={s.id}
+                  to={`/learn/${s.id}`}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 'var(--spacing-md)',
+                    padding: 'var(--spacing-md)',
+                    borderRadius: 'var(--radius-md)',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease',
+                    background: s.id === stepId ? 'var(--color-surface-container-highest)' : 'transparent',
+                    color: s.id === stepId ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
+                    fontWeight: s.id === stepId ? 'var(--font-weight-headline)' : 'var(--font-weight-body)'
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '32px',
+                      height: '32px',
+                      fontSize: 'var(--font-size-label-md)',
+                      borderRadius: 'var(--radius-full)',
+                      background: s.id === stepId ? 'var(--color-primary)' : 'var(--color-surface-container-highest)',
+                      color: s.id === stepId ? 'var(--color-on-primary)' : 'var(--color-on-surface-variant)',
+                      fontWeight: 'var(--font-weight-headline)'
+                    }}
                   >
-                    <span
-                      className={`flex items-center justify-center w-6 h-6 text-xs rounded-full ${
-                        s.id === stepId
-                          ? "bg-blue-600 text-white"
-                          : "bg-gray-200 text-gray-600"
-                      }`}
-                    >
-                      {s.number}
-                    </span>
-                    <span className="truncate">{s.title}</span>
-                  </Link>
-                ))}
-              </nav>
-            </div>
+                    {s.number}
+                  </span>
+                  <span style={{ fontSize: 'var(--font-size-body-sm)' }}>{s.title}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <div style={{ flex: 1 }}>
+
+          <div style={{ marginBottom: 'var(--spacing-2xl)' }}>
+            <span style={{ fontSize: 'var(--font-size-label-md)', color: 'var(--color-on-surface-variant)' }}>Step {step.number} of 6</span>
+            <h1 className="learning-title" style={{ marginTop: 'var(--spacing-sm)' }}>
+              {step.title}
+            </h1>
           </div>
 
-          <div className="flex-1">
+          {/* what section */}
+          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
+            <h2 className="learning-section-title">What you are doing</h2>
+            <p className="learning-section-content">{step.what}</p>
+          </section>
 
-            <div className="mb-8">
-              <span className="text-sm text-gray-500">Step {step.number} of 6</span>
-              <h1 className="text-2xl font-semibold text-gray-800 mt-1">
-                {step.title}
-              </h1>
-            </div>
+          {/* why section */}
+          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
+            <h2 className="learning-section-title">Why this step exists</h2>
+            <p className="learning-section-content">{step.why}</p>
+          </section>
 
-            {/* what section */}
-            <section className="mb-8">
-              <h2 className="text-lg font-medium text-gray-800 mb-3">
-                What you are doing
-              </h2>
-              <p className="text-gray-600 leading-relaxed">{step.what}</p>
-            </section>
+          {/* how section */}
+          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
+            <h2 className="learning-section-title">How to know it worked</h2>
+            <p className="learning-section-content">{step.how}</p>
+          </section>
 
-            {/* why section */}
-            <section className="mb-8">
-              <h2 className="text-lg font-medium text-gray-800 mb-3">
-                Why this step exists
-              </h2>
-              <p className="text-gray-600 leading-relaxed">{step.why}</p>
-            </section>
-
-            {/* how section */}
-            <section className="mb-8">
-              <h2 className="text-lg font-medium text-gray-800 mb-3">
-                How to know it worked
-              </h2>
-              <p className="text-gray-600 leading-relaxed">{step.how}</p>
-            </section>
-
-            {/* question section */}
-            <section className="mb-8">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-medium text-gray-800 mb-4">
-                  {step.question.text}
-                </h2>
-                <div className="space-y-3">
-                  {step.question.options.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswerSelect(index)}
-                      className={`w-full text-left px-4 py-3 rounded-lg border transition-all ${
-                        selectedAnswer === index
-                          ? index === step.question.correctIndex
-                            ? "border-green-500 bg-green-50 text-green-800"
-                            : "border-red-500 bg-red-50 text-red-800"
-                          : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
-                      }`}
-                    >
-                      <span className="mr-3">
-                        {String.fromCharCode(65 + index)}.
-                      </span>
-                      {option}
-                    </button>
-                  ))}
-                </div>
-                {showFeedback && (
-                  <div
-                    className={`mt-4 p-4 rounded-lg ${
-                      selectedAnswer === step.question.correctIndex
-                        ? "bg-green-100 text-green-800"
-                        : "bg-red-100 text-red-800"
-                    }`}
+          {/* question section */}
+          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
+            <div className="card">
+              <h2 className="learning-section-title">{step.question.text}</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                {step.question.options.map((option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswerSelect(index)}
+                    style={{
+                      textAlign: 'left',
+                      padding: 'var(--spacing-lg)',
+                      borderRadius: 'var(--radius-md)',
+                      border: '1px solid var(--color-surface-container)',
+                      background: selectedAnswer === index
+                        ? (index === step.question.correctIndex
+                          ? 'var(--color-surface-container-highest)'
+                          : 'var(--color-surface-container-highest)')
+                        : 'var(--color-surface-container-low)',
+                      color: selectedAnswer === index
+                        ? (index === step.question.correctIndex
+                          ? 'var(--color-success)'
+                          : 'var(--color-error)')
+                        : 'var(--color-on-surface)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      fontSize: 'var(--font-size-body-md)',
+                      fontWeight: selectedAnswer === index ? 'var(--font-weight-headline)' : 'var(--font-weight-body)'
+                    }}
                   >
-                    {selectedAnswer === step.question.correctIndex
-                      ? "✓ That's correct!"
-                      : "✗ Not quite. Try again!"}
-                  </div>
-                )}
+                    <span style={{ marginRight: 'var(--spacing-md)' }}>
+                      {String.fromCharCode(65 + index)}.
+                    </span>
+                    {option}
+                  </button>
+                ))}
               </div>
-            </section>
-
-            {/* Troubleshooting collapsible section */}
-            <section className="mb-8">
-              <button
-                onClick={() => setShowTroubleshooting(!showTroubleshooting)}
-                className="flex items-center justify-between w-full px-4 py-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 hover:bg-amber-100 transition-colors"
-              >
-                <span className="font-medium">😰 Something went wrong?</span>
-                <span
-                  className={`transform transition-transform ${
-                    showTroubleshooting ? "rotate-180" : ""
-                  }`}
+              {showFeedback && (
+                <div
+                  style={{
+                    marginTop: 'var(--spacing-lg)',
+                    padding: 'var(--spacing-lg)',
+                    borderRadius: 'var(--radius-md)',
+                    background: selectedAnswer === step.question.correctIndex
+                      ? 'var(--color-surface-container-highest)'
+                      : 'var(--color-surface-container-highest)',
+                    color: selectedAnswer === step.question.correctIndex
+                      ? 'var(--color-success)'
+                      : 'var(--color-error)',
+                    fontWeight: 'var(--font-weight-headline)'
+                  }}
                 >
-                  ▼
-                </span>
-              </button>
-              {showTroubleshooting && (
-                <div className="mt-2 p-4 bg-white border border-amber-200 rounded-lg">
-                  <h3 className="font-medium text-gray-800 mb-3">
-                    Common beginner mistakes:
-                  </h3>
-                  <ul className="space-y-2">
-                    {step.mistakes.map((mistake, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-2 text-gray-600"
-                      >
-                        <span className="text-amber-500 mt-1">•</span>
-                        <span>{mistake}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {selectedAnswer === step.question.correctIndex
+                    ? "✓ That's correct!"
+                    : "✗ Not quite. Try again!"}
                 </div>
               )}
-            </section>
+            </div>
+          </section>
 
-            {/* Reflection question */}
-            <section className="mb-8">
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-medium text-gray-800 mb-3">
-                  Why do we do this step?
-                </h2>
-                <p className="text-sm text-gray-500 mb-3">
-                  Take a moment to think about it. There's no wrong answer.
-                </p>
-                <textarea
-                  value={reflection}
-                  onChange={(e) => setReflection(e.target.value)}
-                  placeholder="Write your thoughts here..."
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  rows={4}
-                />
-              </div>
-            </section>
-
-            {/* Complete button */}
+          {/* Troubleshooting collapsible section */}
+          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
             <button
-              onClick={handleComplete}
-              className="w-full py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              onClick={() => setShowTroubleshooting(!showTroubleshooting)}
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: 'var(--spacing-lg)',
+                background: 'var(--color-surface-container-highest)',
+                border: '1px solid var(--color-surface-container)',
+                borderRadius: 'var(--radius-md)',
+                color: 'var(--color-on-surface)',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                fontSize: 'var(--font-size-body-lg)',
+                fontWeight: 'var(--font-weight-headline)'
+              }}
             >
-              Mark step complete
+              <span>😰 Something went wrong?</span>
+              <span
+                style={{
+                  transform: showTroubleshooting ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease'
+                }}
+              >
+                ▼
+              </span>
             </button>
-          </div>
+            {showTroubleshooting && (
+              <div className="card" style={{ marginTop: 'var(--spacing-md)' }}>
+                <h3 style={{ fontWeight: 'var(--font-weight-headline)', marginBottom: 'var(--spacing-md)' }}>
+                  Common beginner mistakes:
+                </h3>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)', listStyle: 'none', padding: 0 }}>
+                  {step.mistakes.map((mistake, index) => (
+                    <li
+                      key={index}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: 'var(--spacing-md)',
+                        color: 'var(--color-on-surface-variant)',
+                        fontSize: 'var(--font-size-body-md)'
+                      }}
+                    >
+                      <span style={{ color: 'var(--color-warning)', marginTop: 'var(--spacing-xs)' }}>•</span>
+                      <span>{mistake}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
+
+          {/* Reflection question */}
+          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
+            <div className="card">
+              <h2 className="learning-section-title">Why do we do this step?</h2>
+              <p style={{ fontSize: 'var(--font-size-label-md)', color: 'var(--color-on-surface-variant)', marginBottom: 'var(--spacing-md)' }}>
+                Take a moment to think about it. There's no wrong answer.
+              </p>
+              <textarea
+                value={reflection}
+                onChange={(e) => setReflection(e.target.value)}
+                placeholder="Write your thoughts here..."
+                className="form-textarea"
+                style={{ minHeight: '120px' }}
+              />
+            </div>
+          </section>
+
+          {/* Complete button */}
+          <button
+            onClick={handleComplete}
+            className="btn-primary"
+            style={{ width: '100%', padding: 'var(--spacing-lg)', fontSize: 'var(--font-size-headline-sm)' }}
+          >
+            Mark step complete
+          </button>
         </div>
       </div>
     </div>
@@ -366,4 +411,3 @@ function LearnStep() {
 }
 
 export default LearnStep;
-

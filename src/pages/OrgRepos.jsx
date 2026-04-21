@@ -70,95 +70,103 @@ function formatLastUpdated(dateString) {
 
 function getSafetyScoreColor(score) {
   if (score >= 90) {
-    return "bg-green-100 text-green-800 border-green-200";
+    return "var(--color-success)";
   } else if (score >= 75) {
-    return "bg-blue-100 text-blue-800 border-blue-200";
+    return "var(--color-primary)";
   } else if (score >= 60) {
-    return "bg-yellow-100 text-yellow-800 border-yellow-200";
+    return "var(--color-warning)";
   } else {
-    return "bg-red-100 text-red-800 border-red-200";
+    return "var(--color-error)";
   }
-}
-
-function getLanguageColor(language) {
-  const colors = {
-    JavaScript: "bg-yellow-100 text-yellow-800",
-    Python: "bg-blue-100 text-blue-800",
-    TypeScript: "bg-blue-100 text-blue-800",
-    Go: "bg-cyan-100 text-cyan-800",
-    Rust: "bg-orange-100 text-orange-800",
-    CSS: "bg-purple-100 text-purple-800",
-  };
-  return colors[language] || "bg-gray-100 text-gray-800";
 }
 
 function RepoCard({ repo }) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-5 hover:border-gray-300 transition-colors">
+    <div className="repository-card">
       {/* Header with name and safety score */}
-      <div className="flex justify-between items-start mb-3">
-        <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 'var(--spacing-lg)' }}>
+        <div style={{ flex: 1 }}>
           <a
             href={repo.htmlUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg font-semibold text-gray-800 hover:text-blue-600 hover:underline"
+            className="repository-name"
+            style={{ color: 'var(--color-primary)', textDecoration: 'none' }}
           >
             {repo.name}
           </a>
-          <p className="text-sm text-gray-500">{repo.fullName}</p>
+          <p style={{ fontSize: 'var(--font-size-label-md)', color: 'var(--color-on-surface-variant)', margin: 'var(--spacing-xs) 0 0 0' }}>
+            {repo.fullName}
+          </p>
         </div>
         <div
-          className={`px-3 py-1 rounded-full text-sm font-medium border ${getSafetyScoreColor(
-            repo.safetyScore
-          )}`}
+          className="chip"
+          style={{
+            background: getSafetyScoreColor(repo.safetyScore),
+            color: 'var(--color-on-primary)',
+            padding: '6px 12px',
+            fontSize: 'var(--font-size-label-sm)',
+            flexShrink: 0
+          }}
         >
           Safety: {repo.safetyScore}
         </div>
       </div>
 
       {/* Description */}
-      <p className="text-gray-600 text-sm mb-4">
+      <p className="repository-description">
         {repo.description || "No description provided."}
       </p>
 
       {/* Stats row */}
-      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+      <div className="repository-meta">
         {/* Stars */}
-        <div className="flex items-center gap-1">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
+        <div className="repository-meta-item">
+          <span>⭐</span>
           <span>{formatNumber(repo.stars)}</span>
         </div>
 
         {/* Open issues */}
-        <div className="flex items-center gap-1">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+        <div className="repository-meta-item">
+          <span>📋</span>
           <span>{formatNumber(repo.openIssues)}</span>
         </div>
 
         {/* Language */}
         {repo.language && (
-          <div className="flex items-center gap-1">
-            <span
-              className={`w-3 h-3 rounded-full ${getLanguageColor(repo.language)}`}
-            ></span>
+          <div className="repository-meta-item">
+            <span>💻</span>
             <span>{repo.language}</span>
           </div>
         )}
 
         {/* Last updated */}
-        <div className="ml-auto text-gray-400">
-          Updated {formatLastUpdated(repo.updatedAt)}
+        <div className="repository-meta-item" style={{ marginLeft: 'auto' }}>
+          <span>🕐</span>
+          <span>{formatLastUpdated(repo.updatedAt)}</span>
         </div>
+      </div>
+
+      {/* Tags */}
+      <div className="repository-tags">
+        {repo.language && (
+          <span className="chip" style={{ fontSize: 'var(--font-size-label-sm)' }}>
+            {repo.language}
+          </span>
+        )}
+      </div>
+
+      {/* Action */}
+      <div className="repository-actions">
+        <a
+          href={repo.htmlUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary"
+          style={{ textDecoration: 'none', width: '100%', textAlign: 'center' }}
+        >
+          Explore
+        </a>
       </div>
     </div>
   );
@@ -223,88 +231,93 @@ function OrgRepos() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-3xl mx-auto">
+    <div className="repositories-page">
+
+      <div className="repositories-container">
         {/* Page header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-            Organization Repositories
-          </h1>
-          <p className="text-gray-600">
+        <div className="repositories-header">
+          <h1 className="repositories-title">Organization Repositories</h1>
+          <p className="repositories-subtitle">
             Browse repositories and find beginner-friendly projects to contribute to.
           </p>
         </div>
 
         {/* Filter controls */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex flex-wrap items-center gap-4">
-            {/* Language filter */}
-            <div className="flex-1 min-w-[200px]">
-              <label
-                htmlFor="language-filter"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Filter by language
-              </label>
-              <select
-                id="language-filter"
-                value={languageFilter}
-                onChange={(e) => handleFilterChange(setLanguageFilter, e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-gray-700 bg-white"
-              >
-                {languages.map((lang) => (
-                  <option key={lang.value} value={lang.value}>
-                    {lang.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+        <div className="repositories-filters" style={{ marginBottom: 'var(--spacing-2xl)' }}>
+          {/* Language filter */}
+          <div style={{ flex: 1, minWidth: '200px' }}>
+            <label
+              htmlFor="language-filter"
+              className="form-label"
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Filter by language
+            </label>
+            <select
+              id="language-filter"
+              value={languageFilter}
+              onChange={(e) => handleFilterChange(setLanguageFilter, e.target.value)}
+              className="form-select"
+            >
+              {languages.map((lang) => (
+                <option key={lang.value} value={lang.value}>
+                  {lang.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            {/* Sort dropdown */}
-            <div className="flex-1 min-w-[200px]">
-              <label
-                htmlFor="sort-by"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Sort by
-              </label>
-              <select
-                id="sort-by"
-                value={sortBy}
-                onChange={(e) => handleFilterChange(setSortBy, e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-gray-700 bg-white"
-              >
-                {sortOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {/* Sort dropdown */}
+          <div style={{ flex: 1, minWidth: '200px' }}>
+            <label
+              htmlFor="sort-by"
+              className="form-label"
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Sort by
+            </label>
+            <select
+              id="sort-by"
+              value={sortBy}
+              onChange={(e) => handleFilterChange(setSortBy, e.target.value)}
+              className="form-select"
+            >
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
         {/* Error State */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+          <div style={{
+            background: 'var(--color-error-container)',
+            color: 'var(--color-error)',
+            padding: 'var(--spacing-lg)',
+            borderRadius: 'var(--radius-md)',
+            marginBottom: 'var(--spacing-lg)'
+          }}>
             {error}
           </div>
         )}
 
         {/* Content */}
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          <div style={{ textAlign: 'center', padding: 'var(--spacing-4xl) 0' }}>
+            <p className="text-body-lg">Loading repositories...</p>
           </div>
         ) : (
           <>
             {/* Results count */}
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-body-md" style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-on-surface-variant)' }}>
               Showing {repos.length} repositor{repos.length !== 1 ? "ies" : "y"}
             </p>
 
-            {/* Repository list */}
-            <div className="space-y-4">
+            {/* Repository grid */}
+            <div className="repositories-grid">
               {repos.map((repo) => (
                 <RepoCard key={repo.id} repo={repo} />
               ))}
@@ -312,38 +325,36 @@ function OrgRepos() {
 
             {/* Empty state */}
             {repos.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500">
-                  No repositories found for the selected filter.
-                </p>
+              <div className="repositories-empty">
+                <div className="repositories-empty-icon">📭</div>
+                <div className="repositories-empty-title">No repositories found</div>
+                <div className="repositories-empty-description">
+                  Try adjusting your filters to find more projects.
+                </div>
               </div>
             )}
 
             {/* Pagination Controls */}
             {repos.length > 0 && (
-              <div className="flex justify-between items-center mt-8">
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--spacing-lg)', marginTop: 'var(--spacing-2xl)' }}>
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className={`px-4 py-2 rounded-lg border text-sm font-medium ${page === 1
-                    ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                    }`}
+                  className="btn-secondary"
+                  style={{ opacity: page === 1 ? 0.5 : 1 }}
                 >
-                  Previous
+                  ← Previous
                 </button>
-                <div className="text-sm text-gray-600">
+                <div style={{ display: 'flex', alignItems: 'center', color: 'var(--color-on-surface-variant)' }}>
                   Page {page}
                 </div>
                 <button
                   onClick={() => setPage((p) => p + 1)}
-                  disabled={!repos.length} // Simplified check, could check totalPages
-                  className={`px-4 py-2 rounded-lg border text-sm font-medium ${!repos.length
-                    ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                    }`}
+                  disabled={!repos.length}
+                  className="btn-secondary"
+                  style={{ opacity: !repos.length ? 0.5 : 1 }}
                 >
-                  Next
+                  Next →
                 </button>
               </div>
             )}
@@ -355,4 +366,3 @@ function OrgRepos() {
 }
 
 export default OrgRepos;
-

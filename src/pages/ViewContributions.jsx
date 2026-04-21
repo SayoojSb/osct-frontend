@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
-import Navbar from "../components/Navbar";
 
 function ViewContributions() {
   const navigate = useNavigate();
@@ -61,26 +60,28 @@ function ViewContributions() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
+    <div className="contributions-page">
 
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Your Contributions
-        </h2>
+      <div className="contributions-container">
+        <div className="contributions-header">
+          <h1 className="contributions-title">Your Contributions</h1>
+          <p className="contributions-subtitle">Manage and track your open source contributions</p>
+        </div>
 
         {/* FILTERS */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-5">
+        <div className="repositories-filters" style={{ marginBottom: 'var(--spacing-2xl)' }}>
           <input
             placeholder="Search title/repo"
-            className="p-3 border rounded bg-white"
+            className="search-input"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            style={{ flex: 1, minWidth: '200px' }}
           />
 
           <select
-            className="p-3 border rounded bg-white"
+            className="form-select"
             onChange={(e) => setStatus(e.target.value)}
+            style={{ minWidth: '150px' }}
           >
             <option value="">Status</option>
             <option value="open">Open</option>
@@ -89,8 +90,9 @@ function ViewContributions() {
           </select>
 
           <select
-            className="p-3 border rounded bg-white"
+            className="form-select"
             onChange={(e) => setDifficulty(e.target.value)}
+            style={{ minWidth: '150px' }}
           >
             <option value="">Difficulty</option>
             <option value="easy">Easy</option>
@@ -99,8 +101,9 @@ function ViewContributions() {
           </select>
 
           <select
-            className="p-3 border rounded bg-white"
+            className="form-select"
             onChange={(e) => setSort(e.target.value)}
+            style={{ minWidth: '150px' }}
           >
             <option value="latest">Latest</option>
             <option value="oldest">Oldest</option>
@@ -109,82 +112,72 @@ function ViewContributions() {
           </select>
         </div>
 
-        {/* TABLE */}
-        <div className="overflow-x-auto bg-white rounded shadow">
-          <table className="w-full">
-            <thead className="bg-gray-200">
-              <tr>
-                <th className="p-3">Title</th>
-                <th className="p-3">Repo</th>
-                <th className="p-3">Status</th>
-                <th className="p-3">Difficulty</th>
-                <th className="p-3">Actions</th> {/* FIXED */}
-              </tr>
-            </thead>
-
-            <tbody>
-              {loading ? (
-                <tr>
-                  <td colSpan={5} className="text-center p-4">
-                    Loading...
-                  </td>
-                </tr>
-              ) : data.length === 0 ? (
-                <tr>
-                  <td colSpan={5} className="text-center p-4">
-                    No records
-                  </td>
-                </tr>
-              ) : (
-                data.map((c) => (
-                  <tr key={c._id} className="border-b">
-                    <td className="p-3">{c.title}</td>
-                    <td className="p-3">{c.repoName}</td>
-                    <td className="p-3">{c.status}</td>
-                    <td className="p-3">{c.difficulty}</td>
-
-                    <td className="p-3 flex gap-2">
-
-                      {/* DELETE BUTTON */}
-                      <button
-                        onClick={() => handleDelete(c._id)}
-                        className="px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-white"
-                      >
-                        Delete
-                      </button>
-
-                      {/* Edit button : */}
-                      <button
-                        onClick={() => navigate(`/edit/${c._id}`)}
-                        className="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-white"
-                      >
-                        Edit
-                      </button>
-
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+        {/* CONTRIBUTIONS LIST */}
+        <div className="contributions-list">
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: 'var(--spacing-2xl)' }}>
+              <p className="text-body-lg">Loading...</p>
+            </div>
+          ) : data.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: 'var(--spacing-2xl)' }}>
+              <p className="text-body-lg">No contributions found</p>
+            </div>
+          ) : (
+            data.map((c) => (
+              <div key={c._id} className="contribution-item">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 'var(--spacing-lg)' }}>
+                  <div style={{ flex: 1 }}>
+                    <h3 className="contribution-item-title">{c.title}</h3>
+                    <div className="contribution-item-meta">
+                      <span>📦 {c.repoName}</span>
+                      <span>📊 {c.status}</span>
+                      <span>⚡ {c.difficulty}</span>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: 'var(--spacing-sm)', flexShrink: 0 }}>
+                    <button
+                      onClick={() => navigate(`/edit/${c._id}`)}
+                      className="btn-secondary"
+                      style={{ padding: '6px 12px', fontSize: 'var(--font-size-body-sm)' }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(c._id)}
+                      className="btn-tertiary"
+                      style={{ color: 'var(--color-error)', padding: '6px 12px', fontSize: 'var(--font-size-body-sm)' }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         {/* PAGINATION */}
-        <div className="flex justify-center gap-4 mt-4">
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--spacing-lg)', marginTop: 'var(--spacing-2xl)' }}>
           <button
             disabled={page <= 1}
-            className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            className="btn-secondary"
             onClick={() => setPage(page - 1)}
+            style={{ opacity: page <= 1 ? 0.5 : 1 }}
           >
-            Prev
+            ← Previous
           </button>
+
+          <span style={{ display: 'flex', alignItems: 'center', color: 'var(--color-on-surface-variant)' }}>
+            Page {page} of {pagination.totalPages || 1}
+          </span>
 
           <button
             disabled={page >= (pagination.totalPages || 1)}
-            className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            className="btn-secondary"
             onClick={() => setPage(page + 1)}
+            style={{ opacity: page >= (pagination.totalPages || 1) ? 0.5 : 1 }}
           >
-            Next
+            Next →
           </button>
         </div>
       </div>

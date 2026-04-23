@@ -12,7 +12,7 @@ function Dashboard() {
     const fetchActivity = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contributions`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/contributions`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

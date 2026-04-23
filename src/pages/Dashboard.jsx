@@ -19,7 +19,8 @@ function Dashboard() {
         });
         if (response.ok) {
           const data = await response.json();
-          setRecentActivity(data.slice(0, 3));
+          // data is an object with { success, contributions, pagination }
+          setRecentActivity(Array.isArray(data) ? data.slice(0, 3) : (data.contributions || []).slice(0, 3));
         }
       } catch (error) {
         console.error("Failed to fetch recent activity:", error);

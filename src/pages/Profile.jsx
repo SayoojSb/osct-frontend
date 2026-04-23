@@ -34,11 +34,13 @@ function Profile() {
         });
         if (response.ok) {
           const data = await response.json();
+          // data is an object with { success, contributions, pagination }
+          const contributionsArray = Array.isArray(data) ? data : (data.contributions || []);
           setStats({
-            pullRequests: data.length || 0,
+            pullRequests: contributionsArray.length || 0,
             savedRepositories: Math.floor(Math.random() * 15) + 5, // Placeholder
             issuesExplored: Math.floor(Math.random() * 30) + 10, // Placeholder
-            contributionsAdded: data.length || 0,
+            contributionsAdded: contributionsArray.length || 0,
           });
         }
       } catch (error) {

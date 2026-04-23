@@ -72,7 +72,7 @@ function Login() {
 
               <button
                 type="button"
-                onClick={() => window.location.href = `${backendUrl}/api/auth/github?redirect_uri=${frontendOrigin}`}
+                onClick={() => window.location.href = `${backendUrl}/auth/github?redirect_uri=${frontendOrigin}`}
                 className="btn-secondary auth-secondary-action"
               >
                 Login with GitHub

@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://osct-backend-1.onrender.com/api",
-  baseURL: "http://localhost:3000/api", // Use local backend for development
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api",
   withCredentials: false,
 });
 

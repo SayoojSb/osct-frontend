@@ -13,10 +13,12 @@
 
 /* Import page-specific styles */
 @import './pages/dashboard.css';
+@import './pages/profile.css';
 @import './pages/auth.css';
 @import './pages/contributions.css';
 @import './pages/learning.css';
 @import './pages/repositories.css';
+@import './pages/landing.css';
 
 /* ===== CSS RESET ===== */
 * {

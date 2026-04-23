@@ -5,7 +5,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 220px;
+  width: 280px;
   height: 100vh;
   background-color: var(--color-surface-container-low);
   z-index: 1000;

@@ -8,7 +8,7 @@
 
 .main-content {
   flex: 1;
-  margin-left: 220px;
+  margin-left: 280px;
   margin-top: 80px;
   background-color: var(--color-surface-base);
   min-height: calc(100vh - 80px);
@@ -27,7 +27,7 @@
 /* Tablet and Desktop: Full left margin for sidebar */
 @media (min-width: 768px) {
   .main-content {
-    margin-left: 220px;
+    margin-left: 280px;
     margin-top: 80px;
   }
 }

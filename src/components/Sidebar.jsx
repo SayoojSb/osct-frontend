@@ -14,7 +14,7 @@ function Sidebar() {
     { id: "repositories", label: "REPOSITORIES", icon: "folder", href: "/org-repos" },
     { id: "learning", label: "LEARNING", icon: "book", href: "/learn" },
     { id: "contributions", label: "CONTRIBUTIONS", icon: "commit", href: "/contributions" },
-    { id: "settings", label: "SETTINGS", icon: "gear", href: "/settings" },
+    { id: "profile", label: "PROFILE", icon: "user", href: "/profile" },
   ];
 
   // Check if current route matches navigation item
@@ -76,6 +76,12 @@ function Sidebar() {
         <svg className="sidebar__nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="3" />
           <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m2.12 2.12l4.24 4.24M1 12h6m6 0h6m-16.78 7.78l4.24-4.24m2.12-2.12l4.24-4.24" />
+        </svg>
+      ),
+      user: (
+        <svg className="sidebar__nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
         </svg>
       ),
     };

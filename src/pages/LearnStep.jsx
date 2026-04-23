@@ -139,7 +139,6 @@ function LearnStep() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showTroubleshooting, setShowTroubleshooting] = useState(false);
-  const [reflection, setReflection] = useState("");
 
   // Redirect to learn overview if step doesn't exist :
   if (!step) {
@@ -377,23 +376,6 @@ function LearnStep() {
                 </ul>
               </div>
             )}
-          </section>
-
-          {/* Reflection question */}
-          <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
-            <div className="card">
-              <h2 className="learning-section-title">Why do we do this step?</h2>
-              <p style={{ fontSize: 'var(--font-size-label-md)', color: 'var(--color-on-surface-variant)', marginBottom: 'var(--spacing-md)' }}>
-                Take a moment to think about it. There's no wrong answer.
-              </p>
-              <textarea
-                value={reflection}
-                onChange={(e) => setReflection(e.target.value)}
-                placeholder="Write your thoughts here..."
-                className="form-textarea"
-                style={{ minHeight: '120px' }}
-              />
-            </div>
           </section>
 
           {/* Complete button */}

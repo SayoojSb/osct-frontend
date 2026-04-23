@@ -16,6 +16,7 @@ import Success from "./pages/Success";
 import AddContribution from "./pages/AddContribution";
 import ViewContributions from "./pages/ViewContributions";
 import EditContribution from "./pages/EditContribution";
+import Profile from "./pages/Profile";
 // oauth github
 import AuthSuccess from "./pages/AuthSuccess";
 
@@ -62,6 +63,7 @@ function App() {
         <Route path="/add" element={<AddContribution />} />
         <Route path="/contributions" element={<ViewContributions />} />
         <Route path="/edit/:id" element={<EditContribution />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
     </Routes>
   );

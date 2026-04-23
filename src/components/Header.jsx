@@ -19,6 +19,10 @@ function Header() {
     }
   }, []);
 
+  const handleProfileClick = () => {
+    navigate("/profile");
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -49,17 +53,15 @@ function Header() {
           </button>
 
           {/* User Profile */}
-          <div className="header-profile">
-            <button className="profile-btn" onClick={handleLogout}>
-              <div className="profile-avatar">
-                {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
-              </div>
-              <div className="profile-info">
-                <div className="profile-name">{user?.name || "User"}</div>
-                <div className="profile-role">CURATOR</div>
-              </div>
-            </button>
-          </div>
+          <button className="profile-btn" onClick={handleProfileClick} aria-label="Profile">
+            <div className="profile-avatar">
+              {user?.profilePicture ? (
+                <img src={user.profilePicture} alt={user.name} className="profile-avatar-img" />
+              ) : (
+                user?.name ? user.name.charAt(0).toUpperCase() : "U"
+              )}
+            </div>
+          </button>
         </div>
       </div>
     </header>

@@ -10,7 +10,7 @@ function Login() {
   const [message, setMessage] = useState("");
 
   // preserving frontend origin across github oauth:
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_API_URL;
   const frontendOrigin = window.location.origin;
 
   const handleLogin = async (e) => {

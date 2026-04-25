@@ -35,7 +35,7 @@ function Landing() {
             <a href="#start">Start</a>
           </div>
           <button className="landing-nav-btn" onClick={handleGetStarted}>
-            Get Started
+            Log In
           </button>
         </div>
       </nav>

@@ -9,6 +9,12 @@ const stepsData = {
     what: "A fork is your personal copy of someone else's repository. When you fork a repo, you're creating your own version of it on GitHub that you can freely modify without affecting the original project.",
     why: "Forking lets you experiment with changes safely. It's how open source projects accept contributions - you work on your fork, then propose your changes back to the original repo through a pull request.",
     how: "You know the fork worked when you see 'forked from' under the repo name on GitHub, and you have your own copy you can edit.",
+    screenshots: [
+      { step: 1, title: 'Click "Fork 0"', image: '/learn/fork/step1-fork-button.png' },
+      { step: 2, title: 'Click "Create fork"', image: '/learn/fork/step2-create-fork.png' },
+      { step: 3, title: 'Click this icon', image: '/learn/fork/step3-pin-icon.png' },
+      { step: 4, title: 'Click "AetherLearn"', image: '/learn/fork/step4-aetherlearn.png' },
+    ],
     mistakes: [
       "Trying to edit the original repo directly (you need a fork for that)",
       "Forking from your own repository (you just clone those)",
@@ -30,6 +36,11 @@ const stepsData = {
     what: "Cloning downloads the repository from GitHub to your computer. This creates a local copy you can work with using your code editor and terminal.",
     why: "You need a local copy because you'll be making changes to the code. Working locally is faster and gives you access to all your development tools.",
     how: "You know it worked when you can see the project files in your folder and run commands like `ls` or `dir` to list them.",
+    screenshots: [
+      { step: 5, title: 'Click "Code"', image: '/learn/clone/step5-code-button.png' },
+      { step: 6, title: 'Copy the clone URL', image: '/learn/clone/step6-copy-url.png' },
+      { step: 7, title: 'Paste in terminal', image: '/learn/clone/step7-vscode.png' },
+    ],
     mistakes: [
       "Cloning into the wrong folder (check where you ran the command)",
       "Using the original repo's URL instead of your fork's URL",
@@ -114,6 +125,13 @@ const stepsData = {
     what: "A pull request (PR) is a proposal to merge your changes from your fork into the original repository. It's how you formally ask the project maintainers to review and accept your contributions.",
     why: "PRs enable collaboration on open source projects. They let maintainers review your work, give feedback, and decide whether to merge your changes.",
     how: "You know it worked when you see your PR created on GitHub with a number like '#1', showing your changes and a space for review discussion.",
+    screenshots: [
+      { step: 7, title: 'Click "Compare & pull request"', image: '/learn/pr/step7-compare-pr.png' },
+      { step: 8, title: 'Click the "Comment" field', image: '/learn/pr/step8-comment-field.png' },
+      { step: 9, title: 'Click "Create pull request"', image: '/learn/pr/step9-create-pr.png' },
+      { step: 10, title: 'Click "View status"', image: '/learn/pr/step10-view-status.png' },
+      { step: 11, title: 'Click here', image: '/learn/pr/step11-close-status.png' },
+    ],
     mistakes: [
       "Not describing what your PR does in the description",
       "Submitting a PR with broken code or failing tests",
@@ -248,6 +266,25 @@ function LearnStep() {
           <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
             <h2 className="learning-section-title">What you are doing</h2>
             <p className="learning-section-content">{step.what}</p>
+            {step.screenshots && (
+              <div style={{ marginTop: 'var(--spacing-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
+                {step.screenshots.map((screenshot, index) => (
+                  <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                    <img
+                      src={screenshot.image}
+                      alt={screenshot.title}
+                      style={{
+                        width: '100%',
+                        borderRadius: 'var(--radius-lg)',
+                        border: '1px solid var(--color-surface-container)',
+                        maxHeight: '500px',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* why section */}

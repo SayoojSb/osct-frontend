@@ -1,4 +1,4 @@
-# 🎨 OSCT Frontend
+# OSCT Frontend
 
 > Modern, responsive React UI for Open Source Contribution Tracker - Built with React, Vite, and Tailwind CSS
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -27,7 +27,7 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 **OSCT Frontend** is a modern, user-friendly React application that helps beginners navigate their open-source contribution journey. It provides:
 
@@ -43,9 +43,9 @@
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎓 Learning Path
+### Learning Path
 - **Learn Section** - Step-by-step guides for:
   - Forking repositories
   - Cloning locally
@@ -57,19 +57,19 @@
 - **Common Mistakes** section for each step
 - **Knowledge Check** quizzes
 
-### 🔐 Authentication
+### Authentication
 - **Email & Password Login** with JWT
 - **GitHub OAuth Integration** for quick sign-up
 - **Protected Routes** for secure access
 - **Session Management** with token storage
 
-### 📊 Dashboard
+### Dashboard
 - **Contribution Overview** with statistics
 - **Quick Actions** for adding contributions
 - **Recent Activity** feed
 - **Status Distribution** visualization
 
-### 📝 Contribution Management
+### Contribution Management
 - **Add Contribution** with full details
 - **View All** contributions with pagination
 - **Search** by title or repository
@@ -79,14 +79,14 @@
 - **Delete** contributions
 - **Update** PR status
 
-### 🌐 Repository Discovery
+### Repository Discovery
 - **Browse Organizations** on GitHub
 - **Explore Repositories** with details
 - **View Issues** by difficulty level
 - **Filter** beginner-friendly projects
 - **Direct Links** to GitHub
 
-### 📱 Responsive Design
+### Responsive Design
 - **Mobile-First** approach
 - **Tablet Optimized** layouts
 - **Desktop** full experience
@@ -94,7 +94,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ```
 Framework:      React 19.2.0
@@ -108,7 +108,7 @@ Linting:        ESLint 9.39.1
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -140,7 +140,7 @@ npm run preview
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 Create a `.env` file in the root directory:
 
@@ -166,7 +166,7 @@ VITE_APP_VERSION=1.0.0
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Starting the Application
 
@@ -203,7 +203,7 @@ Network: http://your-ip:5173
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 osct-frontend/
@@ -268,7 +268,7 @@ osct-frontend/
 
 ---
 
-## 🗺️ Pages & Routes
+## Pages & Routes
 
 | Route | Component | Auth | Purpose |
 |-------|-----------|------|---------|
@@ -288,7 +288,7 @@ osct-frontend/
 
 ---
 
-## 🧩 Components
+## Components
 
 ### Layout Components
 - **Header** - Top navigation bar
@@ -313,7 +313,7 @@ osct-frontend/
 
 ---
 
-## 🎨 Design System
+## Design System
 
 ### Color Palette (Nocturnal Atelier)
 ```css
@@ -349,7 +349,7 @@ xl:  24px
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Deploy to Netlify
 
@@ -394,7 +394,7 @@ netlify deploy --prod --dir=dist
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Run Tests
 
@@ -415,7 +415,7 @@ npm test -- --coverage
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how:
 
@@ -434,20 +434,20 @@ We welcome contributions! Here's how:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👥 Contributors
+## Contributors
 
 - **Sayooj SB** - Frontend Developer
   - GitHub: [@SayoojSb](https://github.com/SayoojSb)
 
 ---
 
-## 📞 Support
+## Support
 
 - **Issues:** [GitHub Issues](https://github.com/SayoojSb/osct-frontend/issues)
 - **Backend Repo:** [osct-backend](https://github.com/SayoojSb/osct-backend)

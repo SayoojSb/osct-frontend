@@ -1,6 +1,9 @@
-# OSCT Frontend
+# Contribloom — Frontend
 
-> Modern, responsive React UI for Open Source Contribution Tracker - Built with React, Vite, and Tailwind CSS
+> **From confusion to contribution.**  
+> A guided learning scaffold that reduces beginner confusion in open source.
+
+**Vision:** A guided learning scaffold that reduces beginner confusion in open source — transforming the overwhelming GitHub experience into a clear, structured journey for beginners.
 
 [![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-7.2.2-646CFF?logo=vite)](https://vitejs.dev)
@@ -29,7 +32,7 @@
 
 ## Overview
 
-**OSCT Frontend** is a modern, user-friendly React application that helps beginners navigate their open-source contribution journey. It provides:
+**Contribloom Frontend** is a modern, user-friendly React application that helps beginners navigate their open-source contribution journey. It provides:
 
 ✅ Intuitive dashboard for tracking contributions  
 ✅ Step-by-step learning guides for GitHub workflows  
@@ -86,7 +89,7 @@
 - **Filter** beginner-friendly projects
 - **Direct Links** to GitHub
 
-### Responsive Design
+### 📱 Responsive Design
 - **Mobile-First** approach
 - **Tablet Optimized** layouts
 - **Desktop** full experience
@@ -152,7 +155,7 @@ VITE_API_URL=http://localhost:3000/api
 VITE_GITHUB_CLIENT_ID=your_github_client_id
 
 # App Configuration
-VITE_APP_NAME=OSCT
+VITE_APP_NAME=Contribloom
 VITE_APP_VERSION=1.0.0
 ```
 
@@ -193,7 +196,7 @@ Network: http://your-ip:5173
 
 ### User Journey
 
-1. **Landing Page** - Learn about OSCT
+1. **Landing Page** - Learn about Contribloom
 2. **Sign Up / Login** - Create account or login
 3. **Dashboard** - View contributions overview
 4. **Learn Section** - Follow step-by-step guides
@@ -293,7 +296,7 @@ osct-frontend/
 ### Layout Components
 - **Header** - Top navigation bar
 - **Navbar** - Mobile navigation
-- **Sidebar** - Dashboard sidebar
+- **Sidebar** - Dashboard sidebar with 🌱 Contribloom branding
 - **DashboardLayout** - Main layout wrapper
 
 ### Feature Components

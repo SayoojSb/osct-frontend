@@ -26,8 +26,8 @@ function Landing() {
       <nav className="landing-nav">
         <div className="landing-nav-container">
           <div className="landing-logo">
-            <span className="landing-logo-icon">◆</span>
-            OSCT
+            <span className="landing-logo-icon">🌱</span>
+            Contribloom
           </div>
           <div className="landing-nav-links">
             <a href="#why">Why</a>
@@ -48,13 +48,14 @@ function Landing() {
           <div className="landing-hero-blob landing-hero-blob-2" style={{ transform: `translateY(${scrollY * 0.3}px)` }}></div>
         </div>
         <div className="landing-hero-content">
-          <span className="landing-hero-label">✨ EXPLORE OPEN SOURCE</span>
+          <span className="landing-hero-label">EXPLORE OPEN SOURCE</span>
           <h1 className="landing-hero-title">
             Start Your Open Source<br />
             <span className="landing-hero-highlight">Journey With Confidence</span>
           </h1>
+          <p className="landing-hero-tagline">Contribloom — From confusion to contribution.</p>
           <p className="landing-hero-description">
-            Open source can feel intimidating at first. We're here to guide you through it all. Learn the essentials, find the right projects, and make your first contribution with our step-by-step guidance.
+            A guided learning scaffold that reduces beginner confusion in open source. Learn the essentials, find the right projects, and make your first contribution with step-by-step guidance.
           </p>
           <div className="landing-hero-buttons">
             <button className="btn-primary" onClick={handleGetStarted}>
@@ -132,12 +133,8 @@ function Landing() {
       {/* Impact Section */}
       <section className="landing-impact">
         <div className="landing-impact-container">
-          <div className="landing-impact-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-            </svg>
-          </div>
-          <h2 className="landing-impact-title">Your code can help thousands.</h2>
+
+          <h2> <span className="landing-impact-title">Your code can help </span> <span className="landing-impact-title-highlight">thousands</span></h2>
           <p className="landing-impact-description">
             Every contribution matters. Whether it's fixing a bug, adding a feature, or improving documentation, your work can make a real difference in the lives of developers around the world.
           </p>
@@ -185,17 +182,17 @@ function Landing() {
             </div>
           </div>
 
-          <p className="landing-path-quote">
-            "You do not need to be an expert to start. Every senior engineer started exactly where you are right now."
-          </p>
         </div>
       </section>
 
       {/* CTA Section */}
       <section id="start" className="landing-cta">
+          <h3 className="landing-path-quote">
+            "You do not need to be an expert to start. Every senior engineer started exactly where you are right now."
+          </h3>
         <div className="landing-cta-container">
           <h2 className="landing-cta-title">Your first contribution can start today.</h2>
-          <p className="landing-cta-subtitle">Join thousands of developers making a difference in open source.</p>
+
           <div className="landing-cta-buttons">
             <button className="btn-primary" onClick={handleGetStarted}>
               Get Started Now
@@ -209,7 +206,7 @@ function Landing() {
       <footer className="landing-footer">
         <div className="landing-footer-container">
           <div className="landing-footer-content">
-            <p>&copy; 2024 OSCT. All rights reserved.</p>
+            <p>&copy; 2024 Contribloom. All rights reserved.</p>
           </div>
           <div className="landing-footer-links">
             <a href="#">Privacy</a>

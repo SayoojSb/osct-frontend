@@ -34,7 +34,7 @@ function Signup() {
       <div className="auth-container">
         <div className="auth-card">
           <h2 className="auth-title">Create Account</h2>
-          <p className="auth-subtitle">Join OSCT and start contributing</p>
+          <p className="auth-subtitle">Join Contribloom and start contributing</p>
 
           <form onSubmit={handleSignup} className="auth-form">
             <div className="form-group">

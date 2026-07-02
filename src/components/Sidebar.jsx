@@ -120,13 +120,13 @@ function Sidebar() {
           <a
             href="/dashboard"
             className="sidebar__logo"
-            aria-label="OSCT Dashboard"
+            aria-label="Contribloom Dashboard"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("/dashboard");
             }}
           >
-            <span className="sidebar__logo-text">OSCT</span>
+            <span className="sidebar__logo-text">🌱 Contribloom</span>
           </a>
           <span className="sidebar__logo-mode">CURATOR MODE</span>
         </div>
